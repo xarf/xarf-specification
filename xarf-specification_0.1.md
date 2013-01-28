@@ -51,13 +51,13 @@ Receivers must be able to validate against the provided JSON scheme ([more info]
 
 Within the 2nd MIME part, the following mandatory and optional fields are used. Furthermore, specific reports may use specific mandatory or optional fields.
 
-##### <Reported-From:> [mandatory][only once]
+##### Reported-From: [mandatory][only once]
 
 This field contains the sending e-mail address. 
 
 * Example: <code>Reported-From: reporter@example.com</code>
     
-##### <Category:> [mandatory][only once]
+##### Category: [mandatory][only once]
 
 This field must contain one of the following categories:
 
@@ -74,33 +74,33 @@ Usually, this field will be defined by the X-ARF-community and the reporting par
 * Example: <code>Category: abuse</code> 
 
 
-#####<Report-Type:> [mandatory][only once]
+##### Report-Type: [mandatory][only once]
 
 This field contains the type of report. For example login-attack, phishing-website, spamvertized, etc. Usually this field will be defined by X-ARF-community and the reporting party to make sure it has a unique meaning across all available schemas. 
 
 * Example: <code>Report-Type: login-attack</code>
 
-#####<User-Agent:> [mandatory][only once]
+##### User-Agent: [mandatory][only once]
 
 Name and version of the generating software (see RFC1945 and RFC2068) 
 
 * Example: <code>User-Agent: xarf-reporter/1.0 (X-ARF Reporting Toolset v1.0)</code>
 
-#####<Report-ID:> [mandatory][only once]
+##### Report-ID: [mandatory][only once]
 
 The Report-ID for a report containing (one) specific incident(s) must be unique across time and space, so that different receivers of (e.g. forwarded) reports are able to distinguish, compare and consolidate reports among themselves. Further, the Report-ID must have a reasonable domain part.   
 
 * We recommend to use a combination of a (compact) UUID and your domain: <code>[any unique ID]@yourdomain.tld</code> 
 * Example: <code>Report-ID: e9e1fd60c855012f30ab60c5470a79c4@yourdomain.tld</code> 
 
-#####<Date:> [mandatory][only once]
+##### Date: [mandatory][only once]
 
 This field contains the date of the incident itself or date when the incident has been discovered (if not reported realtime). The date should be in RFC 3339 format - if the x-arf schema specifies the date with "format":"date-time". Due to compatibility reasons the date may be written in the RFC 2822 format, no matter if "format":"date-time" is used or not in a x-arf schema description. Therefore, parser implementations should check which of the both formats is used. 
 
 * Example (RFC 2822 format): <code>Date: Mon, 05 Aug 2012 16:19:15 -0000</code> 
 * Example (RFC 3339 format): <code>Date: 2012-04-12T23:20:50.52Z</code> 
 
-#####<Source:> [mandatory][only once]
+##### Source: [mandatory][only once]
 
 Contains the source of abusive behavior. It is described by <Source-Type:>. 
 
@@ -111,38 +111,38 @@ Contains the source of abusive behavior. It is described by <Source-Type:>.
   * <code>Source: domain.tld</code></code>
   * <code>Source: localpart@domain.tld</code>
 
-#####<Source-Type:> [mandatory][only once]
+##### Source-Type: [mandatory][only once]
 
 Currently the following Types are used: <code>ipv4</code> or <code>ip-address</code> (RFC 791 compliant IP-address), <code>ipv6</code> (RFC 2460 compliant IP-address), <code>uri</code> (RFC 2396 compliant URI), <code>domain</code>, <code>email</code>
 
 * Example: <code>Source-Type: ipv4</code> 
 
-#####<Attachment:> [mandatory][only once]
+##### Attachment: [mandatory][only once]
 
 This field defines whether an attachment with further information exists or not. If no such attachments exists, this field has to be set to "none". If an attachment exists, this field must contain the MIME type of the following attachment. 
 
 * Example: <code>Attachment: text/plain</code> 
 
-#####<Schema-URL:> [mandatory][only once]
+##### Schema-URL: [mandatory][only once]
 
 This field contains the URI to the JSON-schema that describes the content of the report. The schema must be published under and the URI must point to the www.x-arf.org domain. If <Category:> is set to private the schema may be published according to what the involved parties agreed upon. 
 
 * Example: <code>Schema-URL: http://www.x-arf.org/schema/abuse_login-attack_0.1.2.json</code>
 
-#####<Version:> [optional][only once]
+##### Version: [optional][only once]
 
 This field contains the version of this specification.  
 *The current version number is 0.1*
 
 * Example: <code>Version: 0.1</code> 
 
-#####<Occurrences:> [optional][only once]
+##### Occurrences: [optional][only once]
 
 Though each incident should be reported on its own, this field may be used to consolidate incidents which are strongly related to each other. 
 
 * Example: <code>Occurrences: 6</code> 
 
-#####<TLP:> [optional][only once]
+##### TLP: [optional][only once]
 
 This field may be used to indicate the sensitivity of the information in the report.
 Please see the [Wikipedia](http://en.wikipedia.org/wiki/Traffic_Light_Protocol) article.   
