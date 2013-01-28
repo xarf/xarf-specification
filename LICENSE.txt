@@ -1,0 +1,15 @@
+Copyright (C) 2010-2013 X-ARF.ORG COMMUNITY 
+This document and translations of it and the provided schema files may 
+be used to implement X-ARF, this document may be copied and furnished to 
+others, and derivative works that comment on or otherwise explain X-ARF 
+or assist in its implementation may be prepared, copied, published and 
+distributed, in whole or in part, without restriction of any kind, 
+provided that the above copyright notice and this paragraph are included 
+on all such copies and derivative works. However, this document itself 
+may not be modified in any way. 
+
+THIS DOCUMENT AND THE INFORMATION CONTAINED HEREIN IS PROVIDED ON AN "AS 
+IS" BASIS AND X-ARF.ORG DISCLAIMS ALL WARRANTIES, EXPRESS OR IMPLIED, 
+INCLUDING BUT NOT LIMITED TO ANY WARRANTY THAT THE USE OF THE 
+INFORMATION HEREIN WILL NOT INFRINGE ANY RIGHTS OR ANY IMPLIED 
+WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE. 
