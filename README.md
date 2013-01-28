@@ -1,1 +1,1 @@
-Please see [xarf-specification_0.1.md](xarf-specification_0.1.md)
+Please see [xarf-specification_0.1.md](https://github.com/abusix/xarf-specification/blob/master/xarf-specification_0.1.md)
