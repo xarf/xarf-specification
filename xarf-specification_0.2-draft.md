@@ -15,19 +15,21 @@ Please notice that the status of this document still is a draft. If you want to 
 ## Changelog of the X-ARF specification
 ### Changes from v0.1 to v0.2
 * As of version v0.2 of this specification encrypted, signed, and bulk abuse reports are introduced.
-* The identifier of "`X-ARF: YES`" changed to "`X-XARF: PLAIN`", "`X-XARF: SECURE`", and "`X-XARF: BULK`" to avert conflicts with old importers. Also, the additional "`X`" in "`X-XARF`" is a necessity to fulfill the requirements of a future RFC.
-* Version v0.2 is still backward compatible with v0.1; therefore all v0.2 importers can handle X-ARF v0.1 generated messages with "`X-ARF: YES`" as identifier. The only alteration for v0.1 X-ARF reports is the "`X-XARF: PLAIN`" identifier. The v0.1 header "`X-ARF: YES`" is deprecated and should not be used in newer X-ARF generators. Chapter 1 is in accordance with specification version 0.1.
+* The identifier of `X-ARF: YES` changed to `X-XARF: PLAIN`, `X-XARF: SECURE`, and `X-XARF: BULK` to avert conflicts with old importers. Also, the additional `X` in `X-XARF` is a necessity to fulfill the requirements of a future RFC.
+* Version v0.2 is still backward compatible with v0.1; therefore all v0.2 importers can handle X-ARF v0.1 generated messages with `X-ARF: YES` as identifier. The only alteration for v0.1 X-ARF reports is the `X-XARF: PLAIN` identifier. The v0.1 header `X-ARF: YES` is deprecated and should not be used in newer X-ARF generators. Chapter 1 is in accordance with specification version 0.1.
 * Recommendation for signing X-ARF messages with DKIM unless otherwise digitally secured
 
 
 ## Overview of an X-ARF Report E-mail
-This descriptive overview is based on three chapters discussing separate X-ARF types. The "`X-XARF`" header value defined below provides the identifier for which X-ARF type is used.
+This descriptive overview is based on three chapters discussing separate X-ARF types. The `X-XARF` header value defined below provides the identifier for which X-ARF type is used.
 
-Chapter 1 describes a single, plain X-ARF message with its header field "`X-XARF: PLAIN`". Chapter 2 provides the definition of signed and/or encrypted messages via S/MIME and PGP/MIME which are identified by "`X-XARF: SECURE`". In chapter 3 multiple abuse reports can be transmitted in one X-ARF bulk e-mail ("`X-XARF: BULK`").
+Chapter 1 describes a single, plain X-ARF message with its header field `X-XARF: PLAIN`. Chapter 2 provides the definition of signed and/or encrypted messages via S/MIME and PGP/MIME which are identified by `X-XARF: SECURE`. In chapter 3 multiple abuse reports can be transmitted in one X-ARF bulk e-mail (`X-XARF: BULK`).
 
-At least the plain, unencrypted, unsigned and single abuse message ("`PLAIN`") must be implemented in X-ARF importers whereas types of "`SECURE`" and "`BULK`" are optional extensions. The definition of header fields in this introduction is applicable on all X-ARF messages.
+At least the plain, unencrypted, unsigned and single abuse message (`PLAIN`) must be implemented in X-ARF importers whereas types of `SECURE` and `BULK` are optional extensions. The definition of header fields in this introduction is applicable on all X-ARF messages.
 
 It is recommended to sign your X-ARF report with DKIM. If you want to sign and/or encrypt your X-ARF report with PGP or S/MIME end to end, follow the specification in chapter 2.
+
+
 
 
 
@@ -41,6 +43,7 @@ Please add some mandatory headers to your X-ARF Reports to let parsers identify 
 * <code>Content-Type: multipart/mixed</code> [mandatory]
 * We recommend to use an easy to understand subject line as follows:
   * <code>abuse report about *source* - *date*</code> [recommended]
+
 
 ### 1st MIME part
 
@@ -67,9 +70,18 @@ Receivers must be able to validate against the provided JSON scheme ([more info]
 * Optional or mandatory as defined in the corresponding schema
 
 
-### Content of the 2nd MIME part: Mandatory and optional keys/fields
 
-Within the 2nd MIME part, the following mandatory and optional fields are used. Furthermore, specific reports may use specific mandatory or optional fields.
+
+## Appendix A: RFC2822 container
+RFC2822 containers are used in `SECURE` and `BULK` context to preserve all mandatory X-ARF header fields. Every X-ARF RFC2822 container must hold a
+completely valid X-ARF message which consists of any given X-ARF type (`PLAIN`, `SECURE`, or `BULK`). The RFC2822 encapsulated message's MIME part is named `xarf.eml`. After the extraction of one single X-ARF message out of an RFC2822 container by either decryption, verifying or removing a signature or iteration over all bulk mime parts it can be re-injected into the default X-ARF import process.
+
+Although the usage of RFC2822 containers offers the possibility of cascaded X-ARF messages, for complexity reasons this is not recommended and should be solely used in mutual agreement of abuse reporter and recipient. Thus, in general the recursion of cascaded RFC2822 containers should not exceed depth 2 for signed or encrypted bulk messages and depth 1 otherwise. Furthermore, no bulk in bulk container is allowed.
+
+
+
+## Appendix B: Content of the 2nd MIME part in plain context
+Within the 2nd MIME part of a plain X-ARF message, the following mandatory and optional fields are used. Furthermore, specific reports may use specific mandatory or optional fields.
 
 ##### Reported-From: [mandatory][only once]
 
@@ -93,7 +105,6 @@ Usually, this field will be defined by the X-ARF-community and the reporting par
 
 * Example: <code>Category: abuse</code> 
 
-
 ##### Report-Type: [mandatory][only once]
 
 This field contains the type of report. For example login-attack, phishing-website, spamvertized, etc. Usually this field will be defined by X-ARF-community and the reporting party to make sure it has a unique meaning across all available schemas. 
@@ -110,7 +121,7 @@ Name and version of the generating software (see RFC1945 and RFC2068)
 
 The Report-ID for a report containing (one) specific incident(s) must be unique across time and space, so that different receivers of (e.g. forwarded) reports are able to distinguish, compare and consolidate reports among themselves. Further, the Report-ID must have a reasonable domain part.   
 
-* We recommend to use a combination of a (compact) UUID and your domain: <code>[any unique ID]@yourdomain.tld</code> 
+* It is recommended to use a combination of a (compact) UUID and your domain: <code>[any unique ID]@yourdomain.tld</code> 
 * Example: <code>Report-ID: e9e1fd60c855012f30ab60c5470a79c4@yourdomain.tld</code> 
 
 ##### Date: [mandatory][only once]
@@ -152,9 +163,9 @@ This field contains the URI to the JSON-schema that describes the content of the
 ##### Version: [optional][only once]
 
 This field contains the version of this specification.  
-*The current version number is 0.1*
+*The current version number is 0.2*
 
-* Example: <code>Version: 0.1</code> 
+* Example: <code>Version: 0.2</code> 
 
 ##### Occurrences: [optional][only once]
 
