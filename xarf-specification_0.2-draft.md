@@ -88,16 +88,28 @@ To make signed or encrypted reports possible distinct content types are necessar
 In case of encrypted or signed reports the mandatory header fields must be conserved in one RFC2822 encapsulated container (message/rfc822) before signing
 or encrypting (more in Appendix A).
 
-### `Content-Type: multipart/signed`
+### Content-Type: multipart/signed
 An e-mail with content type of `multipart/signed` (RFC 1847) describes a digitally signed message. The protocol type determines whether S/MIME (`application/pkcs7-signature`, RFC 5751) or PGP/MIME (`application/pgp-signature`, RFC 3156) was used.
 
-### `Content-Type: multipart/encrypted`
+### Content-Type: multipart/encrypted
 A `multipart/encrypted` content type (RFC 1847) with protocol `application/pgp-encrypted` defines a PGP/MIME encrypted (RFC 3156) abuse report. The encrypted content holds either the RFC2822 container or a PGP/MIME signed message (see: content type `multipart/signed`, protocol type `application/pgp-signature`).
 
-### `Content-Type: application/pkcs7-mime`
+### Content-Type: application/pkcs7-mime
 `application/pkcs7-mime` identifies an S/MIME encrypted message (RFC 5751) of smime type enveloped-data. The encrypted content can either be the RFC2822
 container or an S/MIME signed message with content type `multipart/signed` (see above: protocol `application/pkcs7-signature`).
 
+
+
+## Chapter 2: Bulk X-ARF messages
+|Identifier|scope|
+|----------|-----|
+|`X-XARF: BULK`|optional implementation|
+
+Multiple abuse reports, each stored in RFC2822 containers, can fill separate `multipart/mixed` MIME parts -- even of different report type. This single X-ARF e-mail with one or more abuse reports is called and identified as `BULK`. It is neither signed nor encrypted. Because of the usage of RFC2822 containers all mandatory X-ARF e-mail headers per abuse report can be preserved (more about RFC2822 container).
+
+As an abuse handler receives a bulk X-ARF message she can extract single reports by iterating over all `multipart/mixed` MIME parts and re-injecting them into the import procedure separately.
+
+An encrypted and/or signed bulk message is possible via the RFC2822 container holding an X-ARF secure message as described in chapter 2 (`X-XARF: SECURE`).
 
 
 
