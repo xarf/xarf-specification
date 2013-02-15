@@ -3,14 +3,24 @@
 This is a short specification for X-ARF (Extended Abuse Reporting Format). 
 If you are interested in joining us and/or also start reporting in X-ARF or you think that you might have some valuable ideas, feel that there's still things missing etc., let us know. We are happy to get as much feedback as possible. 
 
-## 0. The idea of X-ARF
+## The idea of X-ARF
 
-X-ARF is designed as a pure container format, where everyone can plug in as many specific containers as he wants to. The content of such containers can be completely different from others. The container itself will be defined in schemes. These schemes contain all information about the meaning of each listed field (mandatory, optional, data type, allowed values,...). To make it easy to read the content of an X-ARF report (just like ARF) the information is represented in [YAML](http://en.wikipedia.org/wiki/YAML). The schemes themselves are defined in JSON-schema, draft 02 (please notice!).    
+X-ARF is designed as a pure container format, where everyone can plug in as many specific containers as he wants to. The content of such containers can be completely different from others. The container itself will be defined in schemes. These schemes contain all information about the meaning of each listed field (mandatory, optional, data type, allowed values,...). To make it easy to read the content of an X-ARF report (just like ARF) the information is represented in [YAML](http://en.wikipedia.org/wiki/YAML). The schemes themselves are defined in JSON-schema, draft 02 (please notice!).
 
-To make sure everybody can understand all available schemes, this community has been established. This community discusses e.g. new containers and additional information for existing containers. Mostly all members of the community also use X-ARF for real-life reporting and abuse handling. Available schemes are versioned and published on [x-arf.org](http://www.x-arf.org/schemata.html). That way every parser is able to validate against the latest X-ARF scheme and thus is able to handle it.    
+To make sure everybody can understand all available schemes, this community has been established. This community discusses e.g. new containers and additional information for existing containers. Mostly all members of the community also use X-ARF for real-life reporting and abuse handling. Available schemes are versioned and published on [x-arf.org](http://www.x-arf.org/schemata.html). That way every parser is able to validate against the latest X-ARF scheme and thus is able to handle it.
+  
 Please notice that the status of this document still is a draft. If you want to start reporting in X-ARF, feel free to join the X-ARF [mailinglist](http://lists.x-arf.org/cgi-bin/mailman/listinfo/) as well.
 
-## 1. Overview of a X-ARF Report Email
+
+## Changelog of the X-ARF specification
+### Changes from v0.1 to v0.2
+* As of version v0.2 of this specification encrypted, signed, and bulk abuse reports are introduced.
+* The identifier of "X-ARF: YES" changed to "`X-XARF: PLAIN`", "X-XARF: SECURE", and "X-XARF: BULK" to avert conflicts with old importers. Also, the additional "X" in "X-XARF" is a necessity to fulfill the requirements of a future RFC.
+* Version v0.2 is still backward compatible with v0.1; therefore all v0.2 importers can handle X-ARF v0.1 generated messages with "X-ARF: YES" as identifier. The only alteration for v0.1 X-ARF reports is the "X-XARF: PLAIN" identifier. The v0.1 header "X-ARF: YES" is deprecated and should not be used in newer X-ARF generators. Chapter 1 is in accordance with specification version 0.1.
+* Recommendation for signing X-ARF messages with DKIM unless otherwise digitally secured
+
+
+## Overview of a X-ARF Report E-mail
 
 ### Header
 
