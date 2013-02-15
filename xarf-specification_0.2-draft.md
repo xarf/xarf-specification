@@ -78,6 +78,29 @@ A plain X-ARF message consists of content type `multipart/mixed`. It represents 
 
 
 
+## Chapter 2: Secure X-ARF messages
+|Identifier|scope|
+|----------|-----|
+|`X-XARF: SECURE`|optional implementation|
+
+To make signed or encrypted reports possible distinct content types are necessary. Therefore content types of `multipart/signed`, `multipart/encrypted`, or `application/pkcs7-mime` must be used for S/MIME or PGP/MIME secured X-ARF messages. This optional message format is explained below.
+
+In case of encrypted or signed reports the mandatory header fields must be conserved in one RFC2822 encapsulated container (message/rfc822) before signing
+or encrypting (more in Appendix A).
+
+### `Content-Type: multipart/signed`
+An e-mail with content type of `multipart/signed` (RFC 1847) describes a digitally signed message. The protocol type determines whether S/MIME (`application/pkcs7-signature`, RFC 5751) or PGP/MIME (`application/pgp-signature`, RFC 3156) was used.
+
+### `Content-Type: multipart/encrypted`
+A `multipart/encrypted` content type (RFC 1847) with protocol `application/pgp-encrypted` defines a PGP/MIME encrypted (RFC 3156) abuse report. The encrypted content holds either the RFC2822 container or a PGP/MIME signed message (see: content type `multipart/signed`, protocol type `application/pgp-signature`).
+
+### `Content-Type: application/pkcs7-mime`
+`application/pkcs7-mime` identifies an S/MIME encrypted message (RFC 5751) of smime type enveloped-data. The encrypted content can either be the RFC2822
+container or an S/MIME signed message with content type `multipart/signed` (see above: protocol `application/pkcs7-signature`).
+
+
+
+
 
 ## Appendix A: RFC2822 container
 RFC2822 containers are used in `SECURE` and `BULK` context to preserve all mandatory X-ARF header fields. Every X-ARF RFC2822 container must hold a
