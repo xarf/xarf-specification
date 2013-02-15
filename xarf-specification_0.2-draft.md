@@ -113,6 +113,7 @@ An encrypted and/or signed bulk message is possible via the RFC2822 container ho
 
 
 
+***
 
 ## Appendix A: RFC2822 container
 RFC2822 containers are used in `SECURE` and `BULK` context to preserve all mandatory X-ARF header fields. Every X-ARF RFC2822 container must hold a
@@ -180,7 +181,7 @@ Contains the source of abusive behavior. It is described by <Source-Type:>.
 * Examples: 
   * <code>Source: 192.168.1.134</code>
   * <code>Source: 2001:898:2000:c:213:206:89:190</code>
-  * <code>Source: https://www.domain.tld/folder/file.xxx</code>
+  * `Source: https://www.domain.tld/folder/file.xxx`
   * <code>Source: domain.tld</code></code>
   * <code>Source: localpart@domain.tld</code>
 
