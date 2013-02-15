@@ -51,7 +51,7 @@ plain from encrypted, signed or bulk reports.
 
 
 ## Chapter 1: Plain X-ARF messages
-|Identifier|scope|
+|Identifier|Scope|
 |----------|-----|
 |`X-XARF: PLAIN`|mandatory implementation|
 
@@ -79,7 +79,7 @@ A plain X-ARF message consists of content type `multipart/mixed`. It represents 
 
 
 ## Chapter 2: Secure X-ARF messages
-|Identifier|scope|
+|Identifier|Scope|
 |----------|-----|
 |`X-XARF: SECURE`|optional implementation|
 
@@ -101,11 +101,11 @@ container or an S/MIME signed message with content type `multipart/signed` (see 
 
 
 ## Chapter 3: Bulk X-ARF messages
-|Identifier|scope|
+|Identifier|Scope|
 |----------|-----|
 |`X-XARF: BULK`|optional implementation|
 
-Multiple abuse reports, each stored in RFC2822 containers, can fill separate `multipart/mixed` MIME parts -- even of different report type. This single X-ARF e-mail with one or more abuse reports is called and identified as `BULK`. It is neither signed nor encrypted. Because of the usage of RFC2822 containers all mandatory X-ARF e-mail headers per abuse report can be preserved (more about RFC2822 container).
+Multiple abuse reports, each stored in RFC2822 containers, can fill separate `multipart/mixed` MIME parts -- even of different report types. This single X-ARF e-mail with one or more abuse reports is called and identified as `BULK`. It is neither signed nor encrypted. Because of the usage of RFC2822 containers all mandatory X-ARF e-mail headers per abuse report can be preserved (more about RFC2822 container).
 
 As an abuse handler receives a bulk X-ARF message she can extract single reports by iterating over all `multipart/mixed` MIME parts and re-injecting them into the import procedure separately.
 
@@ -117,9 +117,9 @@ An encrypted and/or signed bulk message is possible via the RFC2822 container ho
 
 ## Appendix A: RFC2822 container
 RFC2822 containers are used in `SECURE` and `BULK` context to preserve all mandatory X-ARF header fields. Every X-ARF RFC2822 container must hold a
-completely valid X-ARF message which consists of any given X-ARF type (`PLAIN`, `SECURE`, or `BULK`). The RFC2822 encapsulated message's MIME part is named `xarf.eml`. After the extraction of one single X-ARF message out of an RFC2822 container by either decryption, verifying or removing a signature or iteration over all bulk mime parts it can be re-injected into the default X-ARF import process.
+completely valid X-ARF message which consists of any given X-ARF type (`PLAIN`, `SECURE`, or `BULK`). The RFC2822 encapsulated message's MIME part is named `xarf.eml`. After the extraction of one single X-ARF message out of an RFC2822 container by either decryption, verifying or removing a signature or iteration over all bulk mime parts it can be re-injected into the default X-ARF import procedure.
 
-Although the usage of RFC2822 containers offers the possibility of cascaded X-ARF messages, for complexity reasons this is not recommended and should be solely used in mutual agreement of abuse reporter and recipient. Thus, in general the recursion of cascaded RFC2822 containers should not exceed depth 2 for signed or encrypted bulk messages and depth 1 otherwise. Furthermore, no bulk in bulk container is allowed.
+Although the usage of RFC2822 containers offers the possibility of cascaded X-ARF messages, for complexity reasons this is not recommended and should be solely used in mutual agreement of abuse reporter and recipient. Thus, in general the recursion of cascaded RFC2822 containers should not exceed depth 2 for signed or encrypted bulk messages and depth 1 otherwise. Furthermore, no bulk in a bulk container is allowed.
 
 
 
@@ -130,7 +130,7 @@ Within the 2nd MIME part of a plain X-ARF message, the following mandatory and o
 
 This field contains the sending e-mail address. 
 
-* Example: <code>Reported-From: reporter@example.com</code>
+* Example: `Reported-From: reporter@example.com`
     
 ##### Category: [mandatory][only once]
 
@@ -165,7 +165,7 @@ Name and version of the generating software (see RFC1945 and RFC2068)
 The Report-ID for a report containing (one) specific incident(s) must be unique across time and space, so that different receivers of (e.g. forwarded) reports are able to distinguish, compare and consolidate reports among themselves. Further, the Report-ID must have a reasonable domain part.   
 
 * It is recommended to use a combination of a (compact) UUID and your domain: <code>[any unique ID]@yourdomain.tld</code> 
-* Example: <code>Report-ID: e9e1fd60c855012f30ab60c5470a79c4@yourdomain.tld</code> 
+* Example: `Report-ID: e9e1fd60c855012f30ab60c5470a79c4@yourdomain.tld`
 
 ##### Date: [mandatory][only once]
 
@@ -179,11 +179,11 @@ This field contains the date of the incident itself or date when the incident ha
 Contains the source of abusive behavior. It is described by <Source-Type:>. 
 
 * Examples: 
-  * <code>Source: 192.168.1.134</code>
-  * <code>Source: 2001:898:2000:c:213:206:89:190</code>
+  * `Source: 192.168.1.134`
+  * `Source: 2001:898:2000:c:213:206:89:190`
   * `Source: https://www.domain.tld/folder/file.xxx`
-  * <code>Source: domain.tld</code></code>
-  * <code>Source: localpart@domain.tld</code>
+  * `Source: domain.tld`
+  * `Source: localpart@domain.tld`
 
 ##### Source-Type: [mandatory][only once]
 
