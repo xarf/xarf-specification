@@ -15,12 +15,21 @@ Please notice that the status of this document still is a draft. If you want to 
 ## Changelog of the X-ARF specification
 ### Changes from v0.1 to v0.2
 * As of version v0.2 of this specification encrypted, signed, and bulk abuse reports are introduced.
-* The identifier of "X-ARF: YES" changed to "`X-XARF: PLAIN`", "X-XARF: SECURE", and "X-XARF: BULK" to avert conflicts with old importers. Also, the additional "X" in "X-XARF" is a necessity to fulfill the requirements of a future RFC.
-* Version v0.2 is still backward compatible with v0.1; therefore all v0.2 importers can handle X-ARF v0.1 generated messages with "X-ARF: YES" as identifier. The only alteration for v0.1 X-ARF reports is the "X-XARF: PLAIN" identifier. The v0.1 header "X-ARF: YES" is deprecated and should not be used in newer X-ARF generators. Chapter 1 is in accordance with specification version 0.1.
+* The identifier of "`X-ARF: YES`" changed to "`X-XARF: PLAIN`", "`X-XARF: SECURE`", and "`X-XARF: BULK`" to avert conflicts with old importers. Also, the additional "`X`" in "`X-XARF`" is a necessity to fulfill the requirements of a future RFC.
+* Version v0.2 is still backward compatible with v0.1; therefore all v0.2 importers can handle X-ARF v0.1 generated messages with "`X-ARF: YES`" as identifier. The only alteration for v0.1 X-ARF reports is the "`X-XARF: PLAIN`" identifier. The v0.1 header "`X-ARF: YES`" is deprecated and should not be used in newer X-ARF generators. Chapter 1 is in accordance with specification version 0.1.
 * Recommendation for signing X-ARF messages with DKIM unless otherwise digitally secured
 
 
-## Overview of a X-ARF Report E-mail
+## Overview of an X-ARF Report E-mail
+This descriptive overview is based on three chapters discussing separate X-ARF types. The "`X-XARF`" header value defined below provides the identifier for which X-ARF type is used.
+
+Chapter 1 describes a single, plain X-ARF message with its header field "`X-XARF: PLAIN`". Chapter 2 provides the definition of signed and/or encrypted messages via S/MIME and PGP/MIME which are identified by "`X-XARF: SECURE`". In chapter 3 multiple abuse reports can be transmitted in one X-ARF bulk e-mail ("`X-XARF: BULK`").
+
+At least the plain, unencrypted, unsigned and single abuse message ("`PLAIN`") must be implemented in X-ARF importers whereas types of "`SECURE`" and "`BULK`" are optional extensions. The definition of header fields in this introduction is applicable on all X-ARF messages.
+
+It is recommended to sign your X-ARF report with DKIM. If you want to sign and/or encrypt your X-ARF report with PGP or S/MIME end to end, follow the specification in chapter 2.
+
+
 
 ### Header
 
