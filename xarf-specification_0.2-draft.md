@@ -52,8 +52,8 @@ plain from encrypted, signed or bulk reports.
 
 ## Chapter 1: Plain X-ARF messages
 
-| **Identifier** | `X-XARF: PLAIN` |
-| **scope** | mandatory implementation |
+|**Identifier**|`X-XARF: PLAIN`|
+|**scope**|mandatory implementation|
 
 A plain X-ARF message consists of content type `multipart/mixed`. It represents a single, plain, unsigned and unencrypted abuse report which must be supported. It must contain the following three MIME parts:
 
