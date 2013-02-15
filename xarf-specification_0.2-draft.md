@@ -100,7 +100,7 @@ container or an S/MIME signed message with content type `multipart/signed` (see 
 
 
 
-## Chapter 2: Bulk X-ARF messages
+## Chapter 3: Bulk X-ARF messages
 |Identifier|scope|
 |----------|-----|
 |`X-XARF: BULK`|optional implementation|
