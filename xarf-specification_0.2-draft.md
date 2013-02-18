@@ -16,7 +16,7 @@ Please notice that the status of this document still is a draft. If you want to 
 ### Changes from v0.1 to v0.2
 * As of version v0.2 of this specification encrypted, signed, and bulk abuse reports are introduced.
 * The identifier of `X-ARF: YES` changed to `X-XARF: PLAIN`, `X-XARF: SECURE`, and `X-XARF: BULK` to avert conflicts with old importers. Also, the additional `X` in `X-XARF` is a necessity to fulfill the requirements of a future RFC.
-* Version v0.2 is still backward compatible with v0.1; therefore all v0.2 importers can handle X-ARF v0.1 generated messages with `X-ARF: YES` as identifier. The only alteration for v0.1 X-ARF reports is the `X-XARF: PLAIN` identifier. The v0.1 header `X-ARF: YES` is deprecated and should not be used in newer X-ARF generators. [#chapter-1-plain-x-arf-messages](Chapter 1) is in accordance with specification version 0.1.
+* Version v0.2 is still backward compatible with v0.1; therefore all v0.2 importers can handle X-ARF v0.1 generated messages with `X-ARF: YES` as identifier. The only alteration for v0.1 X-ARF reports is the `X-XARF: PLAIN` identifier. The v0.1 header `X-ARF: YES` is deprecated and should not be used in newer X-ARF generators. [Chapter 1](#chapter-1-plain-x-arf-messages) is in accordance with specification version 0.1.
 * Recommendation for signing X-ARF messages with DKIM unless otherwise digitally secured
 
 
