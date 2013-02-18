@@ -23,11 +23,11 @@ Please notice that the status of this document still is a draft. If you want to 
 ## Overview of an X-ARF Report E-mail
 This descriptive overview is based on three chapters discussing separate X-ARF types. The `X-XARF` header value defined below provides the identifier for which X-ARF type is used.
 
-Chapter 1 describes a single, plain X-ARF message with its header field `X-XARF: PLAIN`. Chapter 2 provides the definition of signed and/or encrypted messages via S/MIME and PGP/MIME which are identified by `X-XARF: SECURE`. In chapter 3 multiple abuse reports can be transmitted in one X-ARF bulk e-mail (`X-XARF: BULK`).
+[Chapter 1](#chapter-1-plain-x-arf-messages) describes a single, plain X-ARF message with its header field `X-XARF: PLAIN`. [Chapter 2](#chapter-2-secure-x-arf-messages) provides the definition of signed and/or encrypted messages via S/MIME and PGP/MIME which are identified by `X-XARF: SECURE`. In [chapter 3](#chapter-3-bulk-x-arf-messages) multiple abuse reports can be transmitted in one X-ARF bulk e-mail (`X-XARF: BULK`).
 
 At least the plain, unencrypted, unsigned and single abuse message (`PLAIN`) must be implemented in X-ARF importers whereas types of `SECURE` and `BULK` are optional extensions. The definition of header fields in this introduction is applicable on all X-ARF messages.
 
-It is recommended to sign your X-ARF report with DKIM. If you want to sign and/or encrypt your X-ARF report with PGP or S/MIME end to end, follow the specification in chapter 2.
+It is recommended to sign your X-ARF report with [DKIM](http://dkim.org/). If you want to sign and/or encrypt your X-ARF report with PGP or S/MIME end to end, follow the specification in [chapter 2](#chapter-2-secure-x-arf-messages).
 
 
 ### Header
@@ -46,7 +46,7 @@ plain from encrypted, signed or bulk reports.
 #### Recommended header fields
 * <code>Subject: abuse report about *source* - *date*</code> as an easy to use and apprehensible subject line   
   \[recommended field for plain messages\]
-* X-DKIM/DKIM-Signature according to RFC 5585 and RFC 6376 unless otherwise digitally secured (see chapter 2)   
+* X-DKIM/DKIM-Signature according to RFC 5585 and RFC 6376 unless otherwise digitally secured (see [chapter 2](#chapter-2-secure-x-arf-messages))   
   \[recommended fields for plain or bulk messages\]
 
 
@@ -65,8 +65,8 @@ A plain X-ARF message consists of content type `multipart/mixed`. It represents 
 * <code>charset=utf-8</code>
 
 ### 2nd MIME part
-* The data is a JSON object (a list of key/value pairs) represented in [YAML](http://www.yaml.org) notation. For a detailed list of mandatory and optional YAML keys, see Appendix B.
-* Receivers must be able to validate against the provided JSON scheme ([more info](http://www.x-arf.org/tools.html)).
+* The data is a JSON object (a list of key/value pairs) represented in [YAML](http://www.yaml.org) notation. For a detailed list of mandatory and optional YAML keys, see [Appendix B](#appendix-b-content-of-the-2nd-mime-part-in-plain-context).
+* Receivers must be able to validate against the provided JSON scheme (see [X-ARF tools](http://www.x-arf.org/tools.html)).
 * Machine- and human-readable
 * <code>Content-Type: text/plain</code>
 * <code>charset=utf-8</code>
@@ -88,17 +88,17 @@ A plain X-ARF message consists of content type `multipart/mixed`. It represents 
 To make signed or encrypted reports possible distinct content types are necessary. Therefore content types of `multipart/signed`, `multipart/encrypted`, or `application/pkcs7-mime` must be used for S/MIME or PGP/MIME secured X-ARF messages. This optional message format is explained below.
 
 In case of encrypted or signed reports the mandatory header fields must be conserved in one RFC2822 encapsulated container (message/rfc822) before signing
-or encrypting (more in Appendix A).
+or encrypting (more in [Appendix A](#appendix-a-rfc2822-container)).
 
 ### Content-Type: multipart/signed
 An e-mail with content type of `multipart/signed` (RFC 1847) describes a digitally signed message. The protocol type determines whether S/MIME (`application/pkcs7-signature`, RFC 5751) or PGP/MIME (`application/pgp-signature`, RFC 3156) was used.
 
 ### Content-Type: multipart/encrypted
-A `multipart/encrypted` content type (RFC 1847) with protocol `application/pgp-encrypted` defines a PGP/MIME encrypted (RFC 3156) abuse report. The encrypted content holds either the RFC2822 container or a PGP/MIME signed message (see: content type `multipart/signed`, protocol type `application/pgp-signature`).
+A `multipart/encrypted` content type (RFC 1847) with protocol `application/pgp-encrypted` defines a PGP/MIME encrypted (RFC 3156) abuse report. The encrypted content holds either the [RFC2822 container](#appendix-a-rfc2822-container) or a PGP/MIME signed message (see: content type `multipart/signed`, protocol type `application/pgp-signature`).
 
 ### Content-Type: application/pkcs7-mime
-`application/pkcs7-mime` identifies an S/MIME encrypted message (RFC 5751) of smime type enveloped-data. The encrypted content can either be the RFC2822
-container or an S/MIME signed message with content type `multipart/signed` (see above: protocol `application/pkcs7-signature`).
+`application/pkcs7-mime` identifies an S/MIME encrypted message (RFC 5751) of smime type enveloped-data. The encrypted content can either be the [RFC2822
+container](#appendix-a-rfc2822-container) or an S/MIME signed message with content type `multipart/signed` (see above: protocol `application/pkcs7-signature`).
 
 
 
@@ -107,11 +107,11 @@ container or an S/MIME signed message with content type `multipart/signed` (see 
 |----------|-----|
 |`X-XARF: BULK`|optional implementation|
 
-Multiple abuse reports, each stored in RFC2822 containers, can fill separate `multipart/mixed` MIME parts -- even of different report types. This single X-ARF e-mail with one or more abuse reports is called and identified as `BULK`. It is neither signed nor encrypted. Because of the usage of RFC2822 containers all mandatory X-ARF e-mail headers per abuse report can be preserved (more about RFC2822 container).
+Multiple abuse reports, each stored in [RFC2822 containers](#appendix-a-rfc2822-container), can fill separate `multipart/mixed` MIME parts -- even of different report types. This single X-ARF e-mail with one or more abuse reports is called and identified as `BULK`. It is neither signed nor encrypted. Because of the usage of RFC2822 containers all mandatory X-ARF e-mail headers per abuse report can be preserved (more about [RFC2822 container](#appendix-a-rfc2822-container)).
 
 As an abuse handler receives a bulk X-ARF message she can extract single reports by iterating over all `multipart/mixed` MIME parts and re-injecting them into the import procedure separately.
 
-An encrypted and/or signed bulk message is possible via the RFC2822 container holding an X-ARF secure message as described in chapter 2 (`X-XARF: SECURE`).
+An encrypted and/or signed bulk message is possible via the [RFC2822 container](#appendix-a-rfc2822-container) holding an X-ARF secure message as described in [chapter 2](#chapter-2-secure-x-arf-messages) (`X-XARF: SECURE`).
 
 
 
