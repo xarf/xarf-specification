@@ -230,7 +230,7 @@ Please see the [Wikipedia](http://en.wikipedia.org/wiki/Traffic_Light_Protocol) 
 ### X-XARF: PLAIN
 A default plain message with a 3rd MIME part will look like:
 
-[X-XARF PLAIN example](https://raw.github.com/uebelacker/xarf-specification/master/xarf-specification_0.2.x-xarf-plain.png)
+[X-XARF PLAIN example](https://github.com/uebelacker/xarf-specification/raw/master/xarf-specification_0.2.x-xarf-plain.png)
 
 ### X-XARF: SECURE
 A digitally PGP/MIME signed message with its RFC 2822 containers is illustrated by the following image:
