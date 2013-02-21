@@ -23,7 +23,7 @@ Please notice that the status of this document still is a draft. If you want to 
 ## Overview of an X-ARF Report E-mail
 This descriptive overview is based on three chapters discussing separate X-ARF types. The `X-XARF` header value defined below provides the identifier for which X-ARF type is used.
 
-[Chapter 1](#chapter-1-plain-x-arf-messages) describes a single, plain X-ARF message with its header field `X-XARF: PLAIN`. [Chapter 2](#chapter-2-secure-x-arf-messages) provides the definition of signed and/or encrypted messages via S/MIME and PGP/MIME which are identified by `X-XARF: SECURE`. In [chapter 3](#chapter-3-bulk-x-arf-messages) multiple abuse reports can be transmitted in one X-ARF bulk e-mail (`X-XARF: BULK`).
+[Chapter 1](#chapter-1-plain-x-arf-messages) describes a single, plain X-ARF message with its header field `X-XARF: PLAIN`. [Chapter 2](#chapter-2-secure-x-arf-messages) provides the definition of signed and/or encrypted messages via S/MIME and PGP/MIME which are identified by `X-XARF: SECURE`. In [chapter 3](#chapter-3-bulk-x-arf-messages) multiple abuse reports can be transmitted in one X-ARF bulk e-mail (`X-XARF: BULK`). A visualisation of all three X-ARF types can be found as showcases in [appendix C](#appendix-c-visualisation-of-x-arf-messages).
 
 At least the plain, unencrypted, unsigned and single abuse message (`PLAIN`) must be implemented in X-ARF importers whereas types of `SECURE` and `BULK` are optional extensions. The definition of header fields in this introduction is applicable on all X-ARF messages.
 
@@ -230,7 +230,7 @@ Please see the [Wikipedia](http://en.wikipedia.org/wiki/Traffic_Light_Protocol) 
 ### X-XARF: PLAIN
 A default plain message with a 3rd MIME part will look like:
 
-
+[X-XARF PLAIN example](./xarf-specification_0.2.x-xarf-plain.png?raw=true)
 
 ### X-XARF: SECURE
 A digitally PGP/MIME signed message with its RFC 2822 containers is illustrated by the following image:
@@ -241,5 +241,7 @@ A digitally PGP/MIME signed message with its RFC 2822 containers is illustrated 
 An example bulk message including two reports in RFC 2822 containers is represented by:
 
 
+
+***
 
 *There are already some containers in use that have been designed by the community. If you have ideas for optional fields in existing containers or ideas for completely new containers, please join the X-ARF [mailinglist](http://lists.x-arf.org/cgi-bin/mailman/listinfo/).*
