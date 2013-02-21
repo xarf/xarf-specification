@@ -225,4 +225,21 @@ Please see the [Wikipedia](http://en.wikipedia.org/wiki/Traffic_Light_Protocol) 
  
 * Example: <code>TLP: amber</code>   
 
+
+## Appendix C: Visualisation of X-ARF messages
+### X-XARF: PLAIN
+A default plain message with a 3rd MIME part will look like:
+
+
+
+### X-XARF: SECURE
+A digitally PGP/MIME signed message with its RFC 2822 containers is illustrated by the following image:
+
+
+
+### X-XARF: BULK
+An example bulk message including two reports in RFC 2822 containers is represented by:
+
+
+
 *There are already some containers in use that have been designed by the community. If you have ideas for optional fields in existing containers or ideas for completely new containers, please join the X-ARF [mailinglist](http://lists.x-arf.org/cgi-bin/mailman/listinfo/).*
