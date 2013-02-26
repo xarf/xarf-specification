@@ -229,20 +229,20 @@ Please see the [definition of Information Sharing Traffic Light Protocol](http:/
 
 
 ## Appendix C: Visualisation of X-ARF messages
-### X-XARF: PLAIN
+### `X-XARF: PLAIN`
 A default plain message with a 3rd MIME part will look like:
 
-![X-XARF PLAIN example](https://raw.github.com/uebelacker/xarf-specification/master/xarf-specification_0.2.x-xarf-plain.png)
+![X-XARF PLAIN example](https://raw.github.com/abusix/xarf-specification/master/examples/v0.2/xarf-specification_0.2.x-xarf-plain.png)
 
-### X-XARF: SECURE
+### `X-XARF: SECURE`
 A digitally PGP/MIME signed message with its RFC 2822 container is illustrated by the following image:
 
-![X-XARF SECURE example with PGP/MIME signed RFC 2822 container](https://raw.github.com/uebelacker/xarf-specification/master/xarf-specification_0.2.x-xarf-secure-rfc822-container-pgpmime-signed.png)
+![X-XARF SECURE example with PGP/MIME signed RFC 2822 container](https://raw.github.com/abusix/xarf-specification/master/examples/v0.2/xarf-specification_0.2.x-xarf-secure-rfc822-container-pgpmime-signed.png)
 
-### X-XARF: BULK
-An example bulk message including two plain reports in RFC 2822 containers is represented by:
+### `X-XARF: BULK`
+An example bulk message including two plain reports in RFC 2822 containers is represented by the following image:
 
-![X-XARF BULK example containing two PLAIN messages](https://raw.github.com/uebelacker/xarf-specification/master/xarf-specification_0.2.x-xarf-bulk-rfc822-container.png)
+![X-XARF BULK example containing two PLAIN messages](https://raw.github.com/abusix/xarf-specification/master/examples/v0.2/xarf-specification_0.2.x-xarf-bulk-rfc822-container.png)
 
 ***
 
