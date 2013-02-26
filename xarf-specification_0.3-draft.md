@@ -25,7 +25,7 @@ Please notice that the status of this document still is in development. If you w
 ## Overview of an X-ARF Report E-mail
 This descriptive overview is based on three chapters discussing separate X-ARF types. The `X-XARF` header value defined below provides the identifier for which X-ARF type is used.
 
-[Chapter 1](#chapter-1-plain-x-arf-messages) describes a single, plain X-ARF message with its header field `X-XARF: PLAIN`. [Chapter 2](#chapter-2-secure-x-arf-messages) provides the definition of signed and/or encrypted messages via S/MIME and PGP/MIME which are identified by `X-XARF: SECURE`. In [chapter 3](#chapter-3-bulk-x-arf-messages) multiple abuse reports can be transmitted in one X-ARF bulk e-mail (`X-XARF: BULK`).
+[Chapter 1](#chapter-1-plain-x-arf-messages) describes a single, plain X-ARF message with its header field `X-XARF: PLAIN`. [Chapter 2](#chapter-2-secure-x-arf-messages) provides the definition of signed and/or encrypted messages via S/MIME and PGP/MIME which are identified by `X-XARF: SECURE`. In [chapter 3](#chapter-3-bulk-x-arf-messages) multiple abuse reports can be transmitted in one X-ARF bulk e-mail (`X-XARF: BULK`). A visualisation of all three X-ARF types can be found as showcases in [appendix C](#appendix-c-visualisation-of-x-arf-messages).
 
 At least the plain, unencrypted, unsigned and single abuse message (`PLAIN`) must be implemented in X-ARF importers whereas types of `SECURE` and `BULK` are optional extensions. The definition of header fields in this introduction is applicable on all X-ARF messages.
 
@@ -223,8 +223,27 @@ Though each incident should be reported on its own, this field may be used to co
 ##### TLP: [optional][only once]
 
 This field may be used to indicate the sensitivity of the information in the report.
-Please see the [Wikipedia](http://en.wikipedia.org/wiki/Traffic_Light_Protocol) article.   
+Please see the [definition of Information Sharing Traffic Light Protocol](http://www.trusted-introducer.org/links/ISTLP-v1.1-approved.pdf).   
  
 * Example: <code>TLP: amber</code>   
+
+
+## Appendix C: Visualisation of X-ARF messages
+### `X-XARF: PLAIN`
+A default plain message with a 3rd MIME part will look like:
+
+![X-XARF PLAIN example](https://raw.github.com/abusix/xarf-specification/master/examples/v0.2/xarf-specification_0.2.x-xarf-plain.png)
+
+### `X-XARF: SECURE`
+A digitally PGP/MIME signed message with its RFC 2822 container is illustrated by the following image:
+
+![X-XARF SECURE example with PGP/MIME signed RFC 2822 container](https://raw.github.com/abusix/xarf-specification/master/examples/v0.2/xarf-specification_0.2.x-xarf-secure-rfc822-container-pgpmime-signed.png)
+
+### `X-XARF: BULK`
+An example bulk message including two plain reports in RFC 2822 containers is represented by the following image:
+
+![X-XARF BULK example containing two PLAIN messages](https://raw.github.com/abusix/xarf-specification/master/examples/v0.2/xarf-specification_0.2.x-xarf-bulk-rfc822-container.png)
+
+***
 
 *There are already some containers in use that have been designed by the community. If you have ideas for optional fields in existing containers or ideas for completely new containers, please join the X-ARF [mailinglist](http://lists.x-arf.org/cgi-bin/mailman/listinfo/).*
