@@ -180,7 +180,7 @@ This field contains the date of the incident itself or date when the incident ha
 
 ##### Source: [mandatory][only once]
 
-Contains the source of abusive behavior. It is described by <Source-Type:>. 
+Contains the source of abusive behavior. It is described by Source-Type 
 
 * Examples: 
   * `Source: 192.168.1.134`
@@ -203,7 +203,7 @@ This field defines whether an attachment with further information exists or not.
 
 ##### Schema-URL: [mandatory][only once]
 
-This field contains the URI to the JSON-schema that describes the content of the report. The schema must be published under and the URI must point to the www.x-arf.org domain. If <Category:> is set to private the schema may be published according to what the involved parties agreed upon. 
+This field contains the URI to the JSON-schema that describes the content of the report. The schema should be published under and the URI should point to the www.x-arf.org domain. If Category is set to private the schema should be published according to what the involved parties agreed upon. 
 
 * Example: <code>Schema-URL: http://www.x-arf.org/schema/abuse_login-attack_0.1.2.json</code>
 
