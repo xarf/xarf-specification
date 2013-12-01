@@ -223,7 +223,7 @@ Though each incident should be reported on its own, this field may be used to co
 ##### TLP: [optional][only once]
 
 This field may be used to indicate the sensitivity of the information in the report.
-Please see the [definition of Information Sharing Traffic Light Protocol](http://www.trusted-introducer.org/links/ISTLP-v1.1-approved.pdf).   
+Please see the [definition of Information Sharing Traffic Light Protocol](http://www.trusted-introducer.org/ISTLPv11.pdf).   
  
 * Example: <code>TLP: amber</code>   
 
