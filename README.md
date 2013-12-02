@@ -1,3 +1,5 @@
-Please see [xarf-specification_0.2.md](https://github.com/abusix/xarf-specification/blob/master/xarf-specification_0.2.md).
+xarf is a free and open community project. It is an email format to report different types of network abuse incidents to network owners.
 
-Visit the [x-arf.org](http://x-arf.org) website for further information.
+Please see the [xarf-specification_0.2.md](https://github.com/abusix/xarf-specification/blob/master/xarf-specification_0.2.md). Schemes are available in the [xarf-schemata](https://github.com/abusix/xarf-schemata) github repository.
+
+Visit the [xarf.org](http://xarf.org) website for further information.
