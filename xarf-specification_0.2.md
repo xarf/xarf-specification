@@ -166,7 +166,7 @@ Name and version of the generating software (see RFC1945 and RFC2068)
 
 ##### Report-ID: [mandatory][only once]
 
-The Report-ID for a report containing (one) specific incident(s) must be unique across time and space, so that different receivers of (e.g. forwarded) reports are able to distinguish, compare and consolidate reports among themselves. Further, the Report-ID must have a reasonable domain part.   
+The Report-ID for a report containing (one) specific incident(s) must be unique across time and space, so that different receivers of (e.g. forwarded) reports are able to distinguish, compare and consolidate reports among themselves. Further, the Report-ID should have a reasonable domain part.   
 
 * It is recommended to use a combination of a (compact) UUID and your domain: <code>[any unique ID]@yourdomain.tld</code> 
 * Example: `Report-ID: e9e1fd60c855012f30ab60c5470a79c4@yourdomain.tld`
