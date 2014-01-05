@@ -1,4 +1,4 @@
-Copyright (C) 2010-2013 X-ARF.ORG/XARF.ORG COMMUNITY 
+Copyright (C) 2010-2014 X-ARF.ORG/XARF.ORG COMMUNITY 
 This document and translations of it and the provided schema files may 
 be used to implement XARF, this document may be copied and furnished to 
 others, and derivative works that comment on or otherwise explain XARF 
