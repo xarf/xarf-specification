@@ -2,4 +2,4 @@ xarf is a free and open community project. It is an email format to report diffe
 
 Please see the [xarf-specification_0.2.md](./xarf-specification_0.2.md). Schemes are available in the [xarf-schemata](https://github.com/xarf/xarf-schemata) github repository.
 
-Visit the [x-arf.org](http://xarf.org) website for further information.
+Visit the [xarf.org](http://xarf.org) website for further information.
